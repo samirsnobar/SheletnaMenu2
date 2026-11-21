@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>شلتنا | Shilletna Roastery</title>
+
+    <!-- خطوط عربية وإنجليزية متناسقة مع هوية المحمصة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['IBM Plex Sans Arabic', 'Inter', 'sans-serif'],
+                        display: ['Cairo', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        bg: 'var(--bg-primary)',
+                        card: 'var(--bg-card)',
+                        cardHover: 'var(--bg-card-hover)',
+                        elevated: 'var(--bg-elevated)',
+                        ink: 'var(--text-primary)',
+                        muted: 'var(--text-secondary)',
+                        subtle: 'var(--text-muted)',
+                        line: 'var(--border-color)',
+                        copper: {
+                            DEFAULT: 'var(--accent-copper)',
+                            hover: 'var(--accent-copper-hover)',
+                            soft: 'var(--accent-copper-soft)',
+                            ink: 'var(--accent-ink)',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        /* لوحة الألوان النهارية الدافئة (Warm Paper / Alabaster & Roasted Copper) */
+        :root {
+            --bg-primary: #f7f4ef;
+            --bg-card: #ffffff;
+            --bg-card-hover: #fcfaf7;
+            --bg-elevated: #efeae2;
+            --text-primary: #1c1815;
+            --text-secondary: #635b54;
+            --text-muted: #8c8279;
+            --border-color: #e2dbd3;
+            --accent-copper: #c87d4b;
+            --accent-copper-hover: #b46c3c;
+            --accent-copper-soft: rgba(200, 125, 75, 0.14);
+            --accent-ink: #ffffff;
+        }
+
+        /* لوحة الألوان الليلية الفخمة (Deep Charcoal / Espresso & Warm Amber/Copper) */
+        html.dark {
+            --bg-primary: #11100f;
+            --bg-card: #1a1816;
+            --bg-card-hover: #201d1b;
+            --bg-elevated: #24211e;
+            --text-primary: #f3efe9;
+            --text-secondary: #a59b91;
+            --text-muted: #786f66;
+            --border-color: #2c2824;
+            --accent-copper: #d98a54;
+            --accent-copper-hover: #e39864;
+            --accent-copper-soft: rgba(217, 138, 84, 0.16);
+            --accent-ink: #11100f;
+        }
+
+        body, header, main, section, div, button, input, textarea, select {
+            transition: background-color 0.22s ease, border-color 0.22s ease, color 0.2s ease;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0.65; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .animate-slide-up {
+            animation: slideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-copper);
+        }
+    </style>
+</head>
+<body class="bg-bg text-ink font-sans antialiased selection:bg-copper selection:text-copper-ink min-h-screen pb-28">
+
+    <!-- الشريط العلوي للمينيو -->
+    <header class="sticky top-0 z-30 bg-bg/95 backdrop-blur-md border-b border-line">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-2.5">
+            <!-- هوية الكافيه -->
+            <div class="flex items-center gap-3 min-w-0">
+                <div class="w-10 h-10 rounded-xl bg-card border border-line text-copper flex items-center justify-center shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4.5 0-8 3.5-8 8 0 3.2 1.8 6 4.5 7.3L12 21l3.5-2.7C18.2 17 20 14.2 20 11c0-4.5-3.5-8-8-8z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-1.5 3-1.5 6 0 9s1.5 6 0 9" />
+                    </svg>
+                </div>
+                <div class="min-w-0">
+                    <h1 id="brandTitle" class="text-base sm:text-lg font-display font-extrabold text-ink truncate">شلتنا</h1>
+                    <p id="brandSubtitle" class="text-[11px] sm:text-xs text-muted truncate">قهوة مختصة • ل.س</p>
+                </div>
+            </div>
+
+            <!-- أزرار اللغة + الثيم + السلة -->
+            <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap justify-end">
+                <button type="button" onclick="toggleLanguage()" id="langToggleBtn" class="h-9 sm:h-10 px-2.5 sm:px-3 rounded-xl bg-card hover:bg-elevated text-ink border border-line text-xs font-extrabold transition active:scale-95">
+                    EN
+                </button>
+
+                <button type="button" onclick="toggleTheme()" id="themeToggleBtn" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-card hover:bg-elevated text-ink border border-line transition active:scale-95 flex items-center justify-center" aria-label="Toggle Theme">
+                    <svg id="sunIcon" class="w-4 h-4 sm:w-5 sm:h-5 text-copper" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg id="moonIcon" class="hidden w-4 h-4 sm:w-5 sm:h-5 text-ink" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+
+                <button type="button" id="headerCartBtn" onclick="openCart()" class="relative h-9 sm:h-10 flex items-center gap-1.5 px-3 bg-card hover:bg-elevated text-ink rounded-xl border border-line transition active:scale-95">
+                    <span id="headerCartLabel" class="text-xs font-bold hidden sm:inline">الطلبات</span>
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-copper" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span id="headerCartBadge" class="hidden bg-copper text-copper-ink text-[11px] font-extrabold px-1.5 min-w-[20px] h-5 rounded-md flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- شريط البحث والتصنيفات -->
+        <div id="menuSubHeader" class="max-w-6xl mx-auto px-4 pb-3.5 space-y-3">
+            <div class="relative">
+                <input type="text" id="searchInput" placeholder="ابحث في القائمة (إسبريسو، V60، ماتشا، تشيز كيك...)" class="w-full bg-card border border-line focus:border-copper rounded-xl py-2.5 ps-10 pe-10 text-sm text-ink placeholder-subtle focus:outline-none transition" />
+                <svg class="w-4 h-4 text-subtle absolute start-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                <button type="button" id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute end-3 top-1/2 -translate-y-1/2 text-muted hover:text-ink p-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div id="categoryTabs" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+                <!-- يتم توليد أزرار الأقسام ديناميكياً -->
+            </div>
+        </div>
+    </header>
+
+    <!-- عرض مينيو الزبائن -->
+    <main id="customerMenuView" class="max-w-6xl mx-auto px-4 pt-6">
+        <div id="menuContainer" class="space-y-9">
+            <!-- يتم توليد الأقسام والبطاقات ديناميكياً -->
+        </div>
+
+        <div id="emptySearchState" class="hidden text-center py-20 px-4 bg-card rounded-2xl border border-line">
+            <svg class="w-12 h-12 text-subtle mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <h3 id="emptySearchTitle" class="text-base font-bold text-ink">لا توجد نتائج مطابقة لبحثك</h3>
+            <p id="emptySearchDesc" class="text-xs text-muted mt-1">جرب البحث باسم آخر أو استعرض كافة أقسام المينيو.</p>
+            <button type="button" id="emptySearchResetBtn" onclick="resetFilters()" class="mt-4 px-5 py-2 bg-copper hover:bg-copper-hover text-copper-ink text-xs font-extrabold rounded-xl transition">عرض جميع الأصناف</button>
+        </div>
+    </main>
+
+    <!-- شريط السلة العائم -->
+    <div id="floatingCartBar" class="fixed bottom-4 inset-x-4 max-w-6xl mx-auto z-30 transition-all duration-300 translate-y-28 opacity-0 pointer-events-none">
+        <button type="button" onclick="openCart()" class="w-full bg-card hover:bg-cardHover text-ink p-3.5 sm:p-4 rounded-2xl border border-copper shadow-2xl flex items-center justify-between transition active:scale-[0.99]">
+            <div class="flex items-center gap-3.5">
+                <span id="floatingCount" class="bg-copper text-copper-ink font-extrabold text-sm w-8 h-8 rounded-xl flex items-center justify-center">0</span>
+                <div class="text-start">
+                    <div id="floatingCartTitle" class="text-sm font-bold text-ink">مراجعة الطلب وإرساله عبر واتساب</div>
+                    <div id="floatingCartSub" class="text-xs text-muted">اضغط لتأكيد الأصناف ورقم الطاولة</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <span id="floatingTotal" class="text-base sm:text-lg font-extrabold text-copper">0 ل.س</span>
+                <svg id="floatingChevron" class="w-5 h-5 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </div>
+        </button>
+    </div>
+
+    <!-- نافذة تخصيص المنتج -->
+    <div id="itemModal" class="fixed inset-0 z-50 hidden">
+        <div onclick="closeItemModal()" class="fixed inset-0 bg-black/75 backdrop-blur-xs"></div>
+
+        <div class="fixed inset-x-0 bottom-0 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 w-full sm:max-w-lg bg-card rounded-t-2xl sm:rounded-2xl shadow-2xl border border-line overflow-hidden animate-slide-up max-h-[92vh] flex flex-col">
+            <div class="relative h-52 sm:h-60 w-full bg-elevated shrink-0 overflow-hidden">
+                <img id="modalImage" src="" alt="" class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
+
+                <button type="button" onclick="closeItemModal()" class="absolute top-3.5 end-3.5 p-2 bg-black/65 hover:bg-black/85 text-white rounded-xl border border-white/15 transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <div class="absolute bottom-3.5 inset-x-5 text-start">
+                    <span id="modalCategory" class="inline-block text-[11px] font-bold text-white bg-black/60 border border-white/20 px-2.5 py-0.5 rounded-md mb-1">القسم</span>
+                    <h3 id="modalTitle" class="text-xl font-display font-extrabold text-white">اسم المشروب</h3>
+                </div>
+            </div>
+
+            <div class="p-5 overflow-y-auto space-y-5 flex-1 text-start">
+                <p id="modalDescription" class="text-xs sm:text-sm text-muted leading-relaxed border-b border-line pb-4"></p>
+
+                <div id="drinkOptionsSection" class="space-y-5">
+                    <div id="milkOptionGroup">
+                        <label id="milkLabelTitle" class="block text-xs font-bold text-ink uppercase tracking-wider mb-2.5">اختيار نوع الحليب</label>
+                        <div class="grid grid-cols-2 gap-2" id="milkChoices"></div>
+                    </div>
+
+                    <div id="sugarOptionGroup">
+                        <label id="sugarLabelTitle" class="block text-xs font-bold text-ink uppercase tracking-wider mb-2.5">درجة التحلية</label>
+                        <div class="grid grid-cols-3 gap-2" id="sugarChoices"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="itemNotes" id="notesLabelTitle" class="block text-xs font-bold text-ink mb-2">ملاحظات للباريستا <span class="text-subtle font-normal">(اختياري)</span></label>
+                    <input type="text" id="itemNotes" placeholder="مثال: ثلج قليل، حرارة إضافية..." class="w-full bg-bg border border-line focus:border-copper rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-ink placeholder-subtle focus:outline-none" />
+                </div>
+            </div>
+
+            <div class="p-4 bg-elevated/60 border-t border-line flex items-center gap-3">
+                <div class="flex items-center bg-card rounded-xl p-1 border border-line">
+                    <button type="button" onclick="changeModalQty(-1)" class="w-9 h-9 rounded-lg bg-bg text-ink font-bold text-lg hover:bg-elevated transition flex items-center justify-center">-</button>
+                    <span id="modalQty" class="w-9 text-center font-extrabold text-ink text-sm">1</span>
+                    <button type="button" onclick="changeModalQty(1)" class="w-9 h-9 rounded-lg bg-bg text-ink font-bold text-lg hover:bg-elevated transition flex items-center justify-center">+</button>
+                </div>
+
+                <button type="button" onclick="addCurrentItemToCart()" class="flex-1 bg-copper hover:bg-copper-hover text-copper-ink font-extrabold py-3 px-4 rounded-xl transition active:scale-[0.98] flex items-center justify-between">
+                    <span id="modalAddBtnText" class="text-sm">إضافة للطلب</span>
+                    <span id="modalTotalPrice" class="bg-black/15 px-2.5 py-0.5 rounded-lg text-sm font-extrabold">0 ل.س</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- درج سلة الطلبات وإرسال واتساب -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 hidden">
+        <div onclick="closeCart()" class="fixed inset-0 bg-black/75 backdrop-blur-xs"></div>
+
+        <div class="fixed inset-y-0 end-0 w-full max-w-md bg-card shadow-2xl border-s border-line flex flex-col animate-fade-in">
+            <div class="p-5 bg-bg border-b border-line flex items-center justify-between">
+                <div class="text-start">
+                    <h3 id="cartDrawerTitle" class="text-lg font-display font-extrabold text-ink">سلة الطلبات</h3>
+                    <p id="cartDrawerSubtitle" class="text-xs text-muted mt-0.5">راجع طلبك وأرسله مباشرة عبر واتساب</p>
+                </div>
+                <button type="button" onclick="closeCart()" class="p-2 bg-card hover:bg-elevated text-ink rounded-xl border border-line transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
+
+            <div id="emptyCartState" class="flex-1 flex flex-col items-center justify-center p-8 text-center">
+                <div class="w-16 h-16 rounded-2xl bg-bg border border-line flex items-center justify-center text-subtle mb-4">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                </div>
+                <h4 id="emptyCartTitle" class="text-base font-bold text-ink">سلة الطلبات فارغة</h4>
+                <p id="emptyCartDesc" class="text-xs text-muted mt-1 max-w-xs">أضف مشروباتك أو حلوياتك المفضلة من المينيو للبدء.</p>
+                <button type="button" id="emptyCartBrowseBtn" onclick="closeCart()" class="mt-5 px-5 py-2.5 bg-copper hover:bg-copper-hover text-copper-ink text-xs font-extrabold rounded-xl transition">تصفح المينيو</button>
+            </div>
+
+            <div id="cartFooter" class="hidden p-4 sm:p-5 bg-bg border-t border-line space-y-4">
+                <div class="bg-card p-3.5 rounded-xl border border-line text-start">
+                    <label for="customerTableOrAddress" id="tableInputLabel" class="block text-xs font-bold text-ink mb-1.5">رقم الطاولة أو الاسم / عنوان التوصيل</label>
+                    <input type="text" id="customerTableOrAddress" placeholder="مثال: طاولة 5  أو  أحمد - المزة" class="w-full bg-bg border border-line focus:border-copper rounded-lg px-3 py-2 text-xs sm:text-sm text-ink placeholder-subtle focus:outline-none" />
+                </div>
+
+                <div class="flex justify-between items-center text-base font-extrabold text-ink pt-1">
+                    <span id="cartGrandTotalLabel">الإجمالي الكلي</span>
+                    <span id="cartGrandTotal" class="text-copper text-lg">0 ل.س</span>
+                </div>
+
+                <div class="flex gap-2.5">
+                    <button type="button" id="clearCartBtn" onclick="clearCart()" class="px-3.5 py-3 bg-card hover:bg-red-500/10 text-muted hover:text-red-400 border border-line hover:border-red-500/30 rounded-xl text-xs font-bold transition">
+                        مسح
+                    </button>
+                    <button type="button" onclick="sendOrderViaWhatsApp()" class="flex-1 bg-[#25D366] hover:bg-[#20BD5A] text-[#11100f] font-extrabold py-3.5 px-4 rounded-xl shadow-md transition active:scale-[0.98] flex items-center justify-center gap-2 text-sm">
+                        <svg class="w-5 h-5 fill-current shrink-0" viewBox="0 0 24 24">
+                            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z" />
+                        </svg>
+                        <span id="whatsappBtnText">إرسال الطلب عبر واتساب</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- إشعار Toast منبثق -->
+    <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-card text-ink border border-copper px-4 py-2.5 rounded-xl shadow-2xl text-xs sm:text-sm font-bold flex items-center gap-2.5 opacity-0 pointer-events-none transition-all duration-300 -translate-y-3">
+        <span class="w-2 h-2 rounded-full bg-copper"></span>
+        <span id="toastMessage">تم الحفظ</span>
+    </div>
+
+    <script type="module">
+        import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import {
+            getFirestore,
+            collection,
+            doc,
+            onSnapshot,
+            writeBatch
+        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+        // إعدادات مشروع Firebase الخاصة بكافيه شلتنا
+        const firebaseConfig = {
+            apiKey: "AIzaSyDluTAlF2MA_vsCL_DmTKdZxDQk_05V4dM",
+            authDomain: "samir4-abd21.firebaseapp.com",
+            projectId: "samir4-abd21",
+            storageBucket: "samir4-abd21.firebasestorage.app",
+            messagingSenderId: "149418652500",
+            appId: "1:149418652500:web:593406e522f03af10b0ec1"
+        };
+
+        const WHATSAPP_NUMBER = '963940242745';
+        const CATEGORIES_COLLECTION = 'cafe_categories';
+        const PRODUCTS_COLLECTION = 'cafe_products';
+
+        function makeDrinkArtwork(label, accentHex, bgHex) {
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450" viewBox="0 0 600 450">
+                <defs>
+                    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="${bgHex}"/>
+                        <stop offset="100%" stop-color="#14110f"/>
+                    </linearGradient>
+                </defs>
+                <rect width="600" height="450" fill="url(#g)"/>
+                <circle cx="470" cy="110" r="130" fill="${accentHex}" opacity="0.14"/>
+                <circle cx="120" cy="360" r="150" fill="${accentHex}" opacity="0.1"/>
+                <rect x="215" y="125" width="150" height="165" rx="28" fill="#231f1c" stroke="${accentHex}" stroke-width="3"/>
+                <path d="M365 155 h28 a26 26 0 0 1 0 52 h-28" fill="none" stroke="${accentHex}" stroke-width="3"/>
+                <ellipse cx="290" cy="312" rx="105" ry="14" fill="${accentHex}" opacity="0.35"/>
+                <text x="300" y="378" font-family="Cairo, sans-serif" font-size="24" font-weight="700" fill="#f3efe9" text-anchor="middle">${label}</text>
+            </svg>`;
+            return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+        }
+
+        const DEFAULT_CATEGORIES = [
+            { id: 'signature', nameAr: 'مشروباتنا الخاصة', nameEn: 'Signature Drinks', order: 1 },
+            { id: 'hot-coffee', nameAr: 'القهوة الساخنة', nameEn: 'Hot Coffee', order: 2 },
+            { id: 'iced-coffee', nameAr: 'القهوة المثلجة', nameEn: 'Iced Coffee', order: 3 },
+            { id: 'matcha-tea', nameAr: 'الماتشا والشاي', nameEn: 'Matcha & Tea', order: 4 },
+            { id: 'fresh', nameAr: 'عصائر ومشروبات منعشة', nameEn: 'Fresh & Mocktails', order: 5 },
+            { id: 'bakery', nameAr: 'مخبوزات وحلويات', nameEn: 'Bakery & Desserts', order: 6 }
+        ];
+
+        const DEFAULT_PRODUCTS = [
+            {
+                id: 'sig-1',
+                category: 'signature',
+                nameAr: 'سبانش لاتيه بالكراميل المملح',
+                nameEn: 'Salted Caramel Spanish Latte',
+                descAr: 'إسبريسو غني مع حليب مكثف محلى ولمسة كراميل مملح ورغوة مخملية ناعمة.',
+                descEn: 'Rich espresso layered with sweetened condensed milk, sea-salted caramel, and silky foam.',
+                price: 38000,
+                image: makeDrinkArtwork('سبانش لاتيه بالكراميل', '#d98a54', '#2c1e14'),
+                available: true,
+                hasMilk: true,
+                order: 1
+            },
+            {
+                id: 'sig-2',
+                category: 'signature',
+                nameAr: 'كورتادو البندق المحمص',
+                nameEn: 'Toasted Hazelnut Cortado',
+                descAr: 'جرعة مزدوجة من الإسبريسو المتوازن مع حليب مبخر بنكهة البندق المحمص الدافئة.',
+                descEn: 'Balanced double espresso cut with warm roasted-hazelnut steamed milk.',
+                price: 32000,
+                image: makeDrinkArtwork('كورتادو البندق', '#c87d4b', '#271c15'),
+                available: true,
+                hasMilk: true,
+                order: 2
+            },
+            {
+                id: 'sig-3',
+                category: 'signature',
+                nameAr: 'لاتيه اللافندر والعسل',
+                nameEn: 'Honey Lavender Latte',
+                descAr: 'مزيج هادئ من الإسبريسو، حليب دافئ، عسل طبيعي، ونفحة خفيفة من زهور اللافندر.',
+                descEn: 'Soothing blend of espresso, steamed milk, natural honey, and delicate lavender notes.',
+                price: 36000,
+                image: makeDrinkArtwork('لاتيه اللافندر والعسل', '#b4886b', '#221c24'),
+                available: true,
+                hasMilk: true,
+                order: 3
+            },
+            {
+                id: 'hot-1',
+                category: 'hot-coffee',
+                nameAr: 'إسبريسو',
+                nameEn: 'Espresso',
+                descAr: 'جرعة مركزة من أجود محاصيل البن المحمص بعناية بقوام غني وكريما ذهبية.',
+                descEn: 'Concentrated shot extracted from specialty roasted beans with a golden crema.',
+                price: 20000,
+                image: makeDrinkArtwork('إسبريسو', '#d98a54', '#291c13'),
+                available: true,
+                hasMilk: false,
+                order: 4
+            },
+            {
+                id: 'hot-2',
+                category: 'hot-coffee',
+                nameAr: 'فلات وايت',
+                nameEn: 'Flat White',
+                descAr: 'جرعتان من الإسبريسو المركز مع طبقة رقيقة من الحليب المبخر الناعم.',
+                descEn: 'Double ristretto topped with a thin velvety layer of micro-foamed milk.',
+                price: 30000,
+                image: makeDrinkArtwork('فلات وايت', '#c87d4b', '#261e18'),
+                available: true,
+                hasMilk: true,
+                order: 5
+            },
+            {
+                id: 'hot-3',
+                category: 'hot-coffee',
+                nameAr: 'قهوة مقطرة V60',
+                nameEn: 'Pour Over V60',
+                descAr: 'محضرة يدوياً من محاصيل مختصة لإبراز الإيحاءات الفاكهية والزهرية.',
+                descEn: 'Hand-poured single-origin filter coffee highlighting bright floral and fruit notes.',
+                price: 35000,
+                image: makeDrinkArtwork('قهوة مقطرة V60', '#e39864', '#281d14'),
+                available: true,
+                hasMilk: false,
+                order: 6
+            },
+            {
+                id: 'ice-1',
+                category: 'iced-coffee',
+                nameAr: 'آيس شيكن وايت موكا',
+                nameEn: 'Iced Shaken White Mocha',
+                descAr: 'إسبريسو مخفوق بقوة مع الثلج والشوكولاتة البيضاء الفاخرة والحليب البارد.',
+                descEn: 'Espresso shaken over ice with white chocolate and cold milk.',
+                price: 38000,
+                image: makeDrinkArtwork('آيس وايت موكا', '#c87d4b', '#1c2329'),
+                available: true,
+                hasMilk: true,
+                order: 7
+            },
+            {
+                id: 'ice-2',
+                category: 'iced-coffee',
+                nameAr: 'كولد برو',
+                nameEn: 'Cold Brew',
+                descAr: 'قهوة منقوعة على البارد لمدة 18 ساعة، قوام ناعم وقليلة الحموضة ومنعشة.',
+                descEn: 'Slow-steeped for 18 hours for a smooth, low-acidity, refreshing iced coffee.',
+                price: 34000,
+                image: makeDrinkArtwork('كولد برو', '#a67552', '#191d21'),
+                available: true,
+                hasMilk: false,
+                order: 8
+            },
+            {
+                id: 'tea-1',
+                category: 'matcha-tea',
+                nameAr: 'ماتشا لاتيه كلاسيك',
+                nameEn: 'Classic Matcha Latte',
+                descAr: 'شاي ماتشا ياباني فاخر من الدرجة الاحتفالية مخفوق مع الحليب.',
+                descEn: 'Ceremonial-grade Japanese matcha whisked smooth with milk.',
+                price: 38000,
+                image: makeDrinkArtwork('ماتشا لاتيه', '#7fa869', '#192218'),
+                available: true,
+                hasMilk: true,
+                order: 9
+            },
+            {
+                id: 'fresh-1',
+                category: 'fresh',
+                nameAr: 'موهيتو الباشن فروت',
+                nameEn: 'Passion Fruit Mojito',
+                descAr: 'باشن فروت طازج مع أوراق النعناع، شرائح الليمون، والمياه الفوارة المنعشة.',
+                descEn: 'Fresh passion fruit muddled with mint leaves, lime, and sparkling water.',
+                price: 35000,
+                image: makeDrinkArtwork('موهيتو الباشن فروت', '#e09f3e', '#262014'),
+                available: true,
+                hasMilk: false,
+                order: 10
+            },
+            {
+                id: 'bakery-1',
+                category: 'bakery',
+                nameAr: 'سان سيباستيان تشيز كيك',
+                nameEn: 'San Sebastian Cheesecake',
+                descAr: 'تشيز كيك مخبوزة بقوام كريمي ناعم من الداخل وتُقدم مع صوص الشوكولاتة البلجيكية.',
+                descEn: 'Creamy Basque-style cheesecake served with Belgian dark chocolate sauce.',
+                price: 45000,
+                image: makeDrinkArtwork('سان سيباستيان', '#d98a54', '#2a1f16'),
+                available: true,
+                hasMilk: false,
+                order: 11
+            },
+            {
+                id: 'bakery-2',
+                category: 'bakery',
+                nameAr: 'كرواسون الزبدة الفرنسي',
+                nameEn: 'French Butter Croissant',
+                descAr: 'مخبوز طازجاً كل صباح بطبقات هشة ومقرمشة غنية بالزبدة الفرنسية الفاخرة.',
+                descEn: 'Baked fresh every morning with flaky, golden layers of French butter.',
+                price: 25000,
+                image: makeDrinkArtwork('كرواسون الزبدة', '#c87d4b', '#271e15'),
+                available: true,
+                hasMilk: false,
+                order: 12
+            }
+        ];
+
+        const MILK_OPTIONS = [
+            { id: 'regular', ar: 'حليب كامل الدسم', en: 'Whole Milk', extra: 0 },
+            { id: 'oat', ar: 'حليب الشوفان', en: 'Oat Milk', extra: 5000 },
+            { id: 'almond', ar: 'حليب اللوز', en: 'Almond Milk', extra: 5000 },
+            { id: 'lactose-free', ar: 'خالي من اللاكتوز', en: 'Lactose-Free', extra: 4000 }
+        ];
+
+        const SUGAR_OPTIONS = [
+            { id: 'regular', ar: 'عادي', en: 'Regular' },
+            { id: 'less', ar: 'سكر قليل', en: 'Less Sugar' },
+            { id: 'none', ar: 'بدون سكر', en: 'No Sugar' }
+        ];
+
+        const UI_STRINGS = {
+            ar: {
+                pageTitle: 'شلتنا | Shilletna Roastery',
+                brandTitle: 'شلتنا',
+                brandSubtitle: 'قهوة مختصة • ل.س',
+                langBtn: 'EN',
+                cartBtn: 'الطلبات',
+                searchPlaceholder: 'ابحث في القائمة (إسبريسو، V60، ماتشا، تشيز كيك...)',
+                allCat: 'الكل',
+                emptySearchTitle: 'لا توجد نتائج مطابقة لبحثك',
+                emptySearchDesc: 'جرب البحث باسم آخر أو استعرض كافة أقسام المينيو.',
+                emptySearchReset: 'عرض جميع الأصناف',
+                addOrderBtn: 'طلب',
+                floatingTitle: 'مراجعة الطلب وإرساله عبر واتساب',
+                floatingSub: 'اضغط لتأكيد الأصناف ورقم الطاولة',
+                milkLabel: 'اختيار نوع الحليب',
+                sugarLabel: 'درجة التحلية',
+                notesLabel: 'ملاحظات للباريستا',
+                notesOptional: '(اختياري)',
+                notesPlaceholder: 'مثال: ثلج قليل، حرارة إضافية...',
+                addToOrderBtn: 'إضافة للطلب',
+                cartTitle: 'سلة الطلبات',
+                cartSubtitle: 'راجع طلبك وأرسله مباشرة عبر واتساب',
+                emptyCartTitle: 'سلة الطلبات فارغة',
+                emptyCartDesc: 'أضف مشروباتك أو حلوياتك المفضلة من المينيو للبدء.',
+                emptyCartBrowse: 'تصفح المينيو',
+                tableInputLabel: 'رقم الطاولة أو الاسم / عنوان التوصيل',
+                tableInputPlaceholder: 'مثال: طاولة 5  أو  أحمد - المزة',
+                grandTotalLabel: 'الإجمالي الكلي',
+                clearBtn: 'مسح',
+                whatsappBtn: 'إرسال الطلب عبر واتساب',
+                standardPrep: 'تحضير قياسي',
+                notePrefix: 'ملاحظة',
+                currency: 'ل.س',
+                baseTag: 'أساسي'
+            },
+            en: {
+                pageTitle: 'Shilletna Roastery | Specialty Café',
+                brandTitle: 'SHILLETNA',
+                brandSubtitle: 'Specialty Coffee • SYP',
+                langBtn: 'عربي',
+                cartBtn: 'Order',
+                searchPlaceholder: 'Search menu (Espresso, V60, Matcha, Cheesecake...)',
+                allCat: 'All',
+                emptySearchTitle: 'No matching items found',
+                emptySearchDesc: 'Try another keyword or browse all menu categories.',
+                emptySearchReset: 'Show All Items',
+                addOrderBtn: 'Add',
+                floatingTitle: 'Review Order & Send via WhatsApp',
+                floatingSub: 'Tap to confirm items and table number',
+                milkLabel: 'Milk Selection',
+                sugarLabel: 'Sweetness Level',
+                notesLabel: 'Barista Notes',
+                notesOptional: '(Optional)',
+                notesPlaceholder: 'e.g., Light ice, extra hot...',
+                addToOrderBtn: 'Add to Order',
+                cartTitle: 'Your Order',
+                cartSubtitle: 'Review items and send directly via WhatsApp',
+                emptyCartTitle: 'Your order is empty',
+                emptyCartDesc: 'Add your favorite drinks or pastries from the menu to start.',
+                emptyCartBrowse: 'Browse Menu',
+                tableInputLabel: 'Table Number or Name / Delivery Address',
+                tableInputPlaceholder: 'e.g., Table 5  or  Alex - Mezzeh',
+                grandTotalLabel: 'Grand Total',
+                clearBtn: 'Clear',
+                whatsappBtn: 'Send Order via WhatsApp',
+                standardPrep: 'Standard prep',
+                notePrefix: 'Note',
+                currency: 'SYP',
+                baseTag: 'Included'
+            }
+        };
+
+        let state = {
+            lang: localStorage.getItem('sakina_lang') || 'ar',
+            theme: localStorage.getItem('sakina_theme') || 'dark',
+            selectedCategory: 'all',
+            searchQuery: '',
+            categories: [...DEFAULT_CATEGORIES],
+            products: [...DEFAULT_PRODUCTS],
+            cart: [],
+            currentModalItem: null,
+            modalQty: 1,
+            selectedMilkId: 'regular',
+            selectedSugarId: 'regular'
+        };
+
+        let fbDb = null;
+        let seededCategories = false;
+        let seededProducts = false;
+
+        function sortCollections() {
+            state.categories.sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
+            state.products.sort((a, b) => (a.order ?? 99) - (b.order ?? 99));
+        }
+
+        async function seedInitialFirestoreIfEmpty(collectionName, defaultItems) {
+            if (!fbDb) return;
+            try {
+                const batch = writeBatch(fbDb);
+                defaultItems.forEach(item => {
+                    batch.set(doc(fbDb, collectionName, item.id), item);
+                });
+                await batch.commit();
+            } catch (err) {
+                console.warn(`Initial seed for ${collectionName} skipped:`, err.message);
+            }
+        }
+
+        function initFirebaseRealtimeMenu() {
+            try {
+                const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+                fbDb = getFirestore(app);
+
+                onSnapshot(collection(fbDb, CATEGORIES_COLLECTION), async (snap) => {
+                    if (snap.empty) {
+                        if (!seededCategories) {
+                            seededCategories = true;
+                            await seedInitialFirestoreIfEmpty(CATEGORIES_COLLECTION, DEFAULT_CATEGORIES);
+                        }
+                        state.categories = [...DEFAULT_CATEGORIES];
+                    } else {
+                        state.categories = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+                    }
+                    sortCollections();
+                    renderCategoryTabs();
+                    renderMenu();
+                }, (err) => {
+                    console.error('Firestore categories error:', err);
+                });
+
+                onSnapshot(collection(fbDb, PRODUCTS_COLLECTION), async (snap) => {
+                    if (snap.empty) {
+                        if (!seededProducts) {
+                            seededProducts = true;
+                            await seedInitialFirestoreIfEmpty(PRODUCTS_COLLECTION, DEFAULT_PRODUCTS);
+                        }
+                        state.products = [...DEFAULT_PRODUCTS];
+                    } else {
+                        state.products = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+                    }
+                    sortCollections();
+                    renderMenu();
+                }, (err) => {
+                    console.error('Firestore products error:', err);
+                });
+            } catch (err) {
+                console.error('Firebase connection error:', err);
+            }
+        }
+
+        function formatSyp(amount) {
+            return `${Number(amount || 0).toLocaleString('en-US')} ${UI_STRINGS[state.lang].currency}`;
+        }
+
+        function getCategoryName(cat) {
+            if (!cat) return '';
+            if (state.lang === 'en' && cat.nameEn) return cat.nameEn;
+            return cat.nameAr;
+        }
+
+        function getProductTitle(item) {
+            if (state.lang === 'en' && item.nameEn) return item.nameEn;
+            return item.nameAr;
+        }
+
+        function getProductDesc(item) {
+            if (state.lang === 'en' && item.descEn) return item.descEn;
+            return item.descAr;
+        }
+
+        function applyTheme() {
+            const isDark = state.theme === 'dark';
+            document.documentElement.classList.toggle('dark', isDark);
+            document.getElementById('sunIcon').classList.toggle('hidden', !isDark);
+            document.getElementById('moonIcon').classList.toggle('hidden', isDark);
+        }
+
+        function toggleTheme() {
+            state.theme = state.theme === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('sakina_theme', state.theme);
+            applyTheme();
+        }
+        window.toggleTheme = toggleTheme;
+
+        function applyLanguage() {
+            const lang = state.lang;
+            const t = UI_STRINGS[lang];
+            const htmlEl = document.documentElement;
+            htmlEl.lang = lang;
+            htmlEl.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.title = t.pageTitle;
+
+            document.getElementById('brandTitle').textContent = t.brandTitle;
+            document.getElementById('brandSubtitle').textContent = t.brandSubtitle;
+            document.getElementById('langToggleBtn').textContent = t.langBtn;
+            document.getElementById('headerCartLabel').textContent = t.cartBtn;
+            document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+
+            document.getElementById('emptySearchTitle').textContent = t.emptySearchTitle;
+            document.getElementById('emptySearchDesc').textContent = t.emptySearchDesc;
+            document.getElementById('emptySearchResetBtn').textContent = t.emptySearchReset;
+
+            document.getElementById('floatingCartTitle').textContent = t.floatingTitle;
+            document.getElementById('floatingCartSub').textContent = t.floatingSub;
+            const chevron = document.getElementById('floatingChevron');
+            chevron.innerHTML = lang === 'ar'
+                ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />'
+                : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />';
+
+            document.getElementById('milkLabelTitle').textContent = t.milkLabel;
+            document.getElementById('sugarLabelTitle').textContent = t.sugarLabel;
+            document.getElementById('notesLabelTitle').innerHTML = `${t.notesLabel} <span class="text-subtle font-normal">${t.notesOptional}</span>`;
+            document.getElementById('itemNotes').placeholder = t.notesPlaceholder;
+            document.getElementById('modalAddBtnText').textContent = t.addToOrderBtn;
+
+            document.getElementById('cartDrawerTitle').textContent = t.cartTitle;
+            document.getElementById('cartDrawerSubtitle').textContent = t.cartSubtitle;
+            document.getElementById('emptyCartTitle').textContent = t.emptyCartTitle;
+            document.getElementById('emptyCartDesc').textContent = t.emptyCartDesc;
+            document.getElementById('emptyCartBrowseBtn').textContent = t.emptyCartBrowse;
+            document.getElementById('tableInputLabel').textContent = t.tableInputLabel;
+            document.getElementById('customerTableOrAddress').placeholder = t.tableInputPlaceholder;
+            document.getElementById('cartGrandTotalLabel').textContent = t.grandTotalLabel;
+            document.getElementById('clearBtn').textContent = t.clearBtn;
+            document.getElementById('whatsappBtnText').textContent = t.whatsappBtn;
+
+            renderCategoryTabs();
+            renderMenu();
+            updateCartUI();
+            if (state.currentModalItem) {
+                populateModal(state.currentModalItem);
+            }
+        }
+
+        function toggleLanguage() {
+            state.lang = state.lang === 'ar' ? 'en' : 'ar';
+            localStorage.setItem('sakina_lang', state.lang);
+            applyLanguage();
+        }
+        window.toggleLanguage = toggleLanguage;
+
+        function renderCategoryTabs() {
+            const container = document.getElementById('categoryTabs');
+            const allTab = { id: 'all', nameAr: UI_STRINGS[state.lang].allCat, nameEn: UI_STRINGS[state.lang].allCat };
+            const tabs = [allTab, ...state.categories];
+
+            if (state.selectedCategory !== 'all' && !state.categories.some(c => c.id === state.selectedCategory)) {
+                state.selectedCategory = 'all';
+            }
+
+            container.innerHTML = tabs.map(cat => {
+                const active = state.selectedCategory === cat.id;
+                const label = cat.id === 'all' ? cat.nameAr : getCategoryName(cat);
+                return `
+                    <button type="button" onclick="selectCategory('${cat.id}')" class="shrink-0 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                        active
+                        ? 'bg-copper text-copper-ink shadow-xs'
+                        : 'bg-card hover:bg-elevated text-muted hover:text-ink border border-line'
+                    }">
+                        ${label}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function selectCategory(catId) {
+            state.selectedCategory = catId;
+            renderCategoryTabs();
+            renderMenu();
+        }
+        window.selectCategory = selectCategory;
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            state.searchQuery = e.target.value;
+            document.getElementById('clearSearchBtn').classList.toggle('hidden', state.searchQuery.length === 0);
+            renderMenu();
+        });
+
+        function clearSearch() {
+            state.searchQuery = '';
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            renderMenu();
+        }
+        window.clearSearch = clearSearch;
+
+        function resetFilters() {
+            state.selectedCategory = 'all';
+            clearSearch();
+            renderCategoryTabs();
+        }
+        window.resetFilters = resetFilters;
+
+        function renderMenu() {
+            const container = document.getElementById('menuContainer');
+            const emptyState = document.getElementById('emptySearchState');
+            const q = state.searchQuery.trim().toLowerCase();
+
+            const filtered = state.products.filter(item => {
+                if (item.available === false) return false;
+                const matchCat = state.selectedCategory === 'all' || item.category === state.selectedCategory;
+                const matchQ = !q ||
+                    (item.nameAr && item.nameAr.toLowerCase().includes(q)) ||
+                    (item.nameEn && item.nameEn.toLowerCase().includes(q)) ||
+                    (item.descAr && item.descAr.toLowerCase().includes(q)) ||
+                    (item.descEn && item.descEn.toLowerCase().includes(q));
+                return matchCat && matchQ;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            const cats = state.categories.filter(c => state.selectedCategory === 'all' || state.selectedCategory === c.id);
+            let html = '';
+
+            cats.forEach(cat => {
+                const items = filtered.filter(i => i.category === cat.id);
+                if (items.length === 0) return;
+
+                html += `
+                    <section class="animate-fade-in">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="w-1.5 h-6 rounded-full bg-copper"></span>
+                            <h2 class="text-lg sm:text-xl font-display font-extrabold text-ink">${getCategoryName(cat)}</h2>
+                            <div class="h-px bg-line flex-1 ms-2"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            ${items.map(item => createItemCard(item)).join('')}
+                        </div>
+                    </section>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function createItemCard(item) {
+            const title = getProductTitle(item);
+            const desc = getProductDesc(item);
+            const fallbackImg = makeDrinkArtwork(item.nameAr || 'شلتنا', '#d98a54', '#241c15');
+
+            return `
+                <div onclick="openItemModal('${item.id}')" class="group bg-card hover:bg-cardHover rounded-2xl border border-line hover:border-copper transition-all cursor-pointer flex overflow-hidden shadow-xs">
+                    <div class="relative w-28 sm:w-36 shrink-0 bg-elevated overflow-hidden">
+                        <img src="${item.image}" alt="${title}" loading="lazy" onerror="this.src='${fallbackImg}'" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    </div>
+                    <div class="flex-1 p-3.5 sm:p-4 flex flex-col justify-between min-w-0 text-start">
+                        <div>
+                            <h3 class="font-display font-bold text-ink text-sm sm:text-base group-hover:text-copper transition truncate">${title}</h3>
+                            <p class="text-xs text-muted line-clamp-2 leading-relaxed mt-1">${desc}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-3 mt-2.5 border-t border-line">
+                            <span class="font-extrabold text-copper text-sm sm:text-base">${formatSyp(item.price)}</span>
+                            <span class="inline-flex items-center gap-1 text-xs font-bold text-ink bg-bg group-hover:bg-copper group-hover:text-copper-ink border border-line group-hover:border-copper px-3 py-1.5 rounded-lg transition">
+                                <span>+</span>
+                                <span>${UI_STRINGS[state.lang].addOrderBtn}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function openItemModal(itemId) {
+            const item = state.products.find(p => p.id === itemId);
+            if (!item) return;
+
+            state.currentModalItem = item;
+            state.modalQty = 1;
+            state.selectedMilkId = 'regular';
+            state.selectedSugarId = 'regular';
+            document.getElementById('itemNotes').value = '';
+            document.getElementById('modalQty').textContent = '1';
+
+            populateModal(item);
+            document.getElementById('itemModal').classList.remove('hidden');
+        }
+        window.openItemModal = openItemModal;
+
+        function populateModal(item) {
+            const title = getProductTitle(item);
+            const desc = getProductDesc(item);
+            const catObj = state.categories.find(c => c.id === item.category);
+            const fallbackImg = makeDrinkArtwork(item.nameAr || 'شلتنا', '#d98a54', '#241c15');
+
+            const imgEl = document.getElementById('modalImage');
+            imgEl.onerror = () => { imgEl.src = fallbackImg; };
+            imgEl.src = item.image;
+            imgEl.alt = title;
+
+            document.getElementById('modalCategory').textContent = getCategoryName(catObj);
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDescription').textContent = desc;
+
+            document.getElementById('drinkOptionsSection').classList.remove('hidden');
+            document.getElementById('milkOptionGroup').classList.toggle('hidden', !item.hasMilk);
+
+            renderOptionButtons();
+            updateModalTotalPrice();
+        }
+
+        function renderOptionButtons() {
+            const lang = state.lang;
+            const t = UI_STRINGS[lang];
+
+            document.getElementById('milkChoices').innerHTML = MILK_OPTIONS.map(opt => {
+                const selected = state.selectedMilkId === opt.id;
+                const extraBadge = opt.extra === 0
+                    ? `<span class="text-[11px] text-subtle">${t.baseTag}</span>`
+                    : `<span class="text-[11px] text-copper font-bold">+${formatSyp(opt.extra)}</span>`;
+                return `
+                    <button type="button" onclick="selectMilk('${opt.id}')" class="text-start p-3 rounded-xl border ${selected ? 'border-copper bg-copper-soft text-ink font-bold' : 'border-line bg-bg hover:border-subtle text-muted'} text-xs transition flex justify-between items-center gap-1">
+                        <span class="truncate">${lang === 'ar' ? opt.ar : opt.en}</span>
+                        <span class="shrink-0">${extraBadge}</span>
+                    </button>
+                `;
+            }).join('');
+
+            document.getElementById('sugarChoices').innerHTML = SUGAR_OPTIONS.map(opt => {
+                const selected = state.selectedSugarId === opt.id;
+                return `
+                    <button type="button" onclick="selectSugar('${opt.id}')" class="py-2.5 px-3 rounded-xl border ${selected ? 'border-copper bg-copper-soft text-ink font-bold' : 'border-line bg-bg hover:border-subtle text-muted'} text-xs transition text-center">
+                        ${lang === 'ar' ? opt.ar : opt.en}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function selectMilk(id) {
+            state.selectedMilkId = id;
+            renderOptionButtons();
+            updateModalTotalPrice();
+        }
+        window.selectMilk = selectMilk;
+
+        function selectSugar(id) {
+            state.selectedSugarId = id;
+            renderOptionButtons();
+        }
+        window.selectSugar = selectSugar;
+
+        function closeItemModal() {
+            document.getElementById('itemModal').classList.add('hidden');
+            state.currentModalItem = null;
+        }
+        window.closeItemModal = closeItemModal;
+
+        function changeModalQty(delta) {
+            const next = state.modalQty + delta;
+            if (next >= 1 && next <= 30) {
+                state.modalQty = next;
+                document.getElementById('modalQty').textContent = next;
+                updateModalTotalPrice();
+            }
+        }
+        window.changeModalQty = changeModalQty;
+
+        function updateModalTotalPrice() {
+            if (!state.currentModalItem) return;
+            const milk = MILK_OPTIONS.find(m => m.id === state.selectedMilkId) || MILK_OPTIONS[0];
+            const extra = state.currentModalItem.hasMilk ? milk.extra : 0;
+            const total = (state.currentModalItem.price + extra) * state.modalQty;
+            document.getElementById('modalTotalPrice').textContent = formatSyp(total);
+        }
+
+        function addCurrentItemToCart() {
+            const item = state.currentModalItem;
+            if (!item) return;
+
+            const notes = document.getElementById('itemNotes').value.trim();
+            const milk = MILK_OPTIONS.find(m => m.id === state.selectedMilkId) || MILK_OPTIONS[0];
+            const sugar = SUGAR_OPTIONS.find(s => s.id === state.selectedSugarId) || SUGAR_OPTIONS[0];
+            const extra = item.hasMilk ? milk.extra : 0;
+            const unitPrice = item.price + extra;
+            const customKey = `${item.hasMilk ? milk.id : 'none'}|${sugar.id}|${notes}`;
+
+            const idx = state.cart.findIndex(c => c.itemId === item.id && c.customKey === customKey);
+            if (idx > -1) {
+                state.cart[idx].qty += state.modalQty;
+            } else {
+                state.cart.push({
+                    cartId: Date.now() + Math.random(),
+                    itemId: item.id,
+                    nameAr: item.nameAr,
+                    nameEn: item.nameEn || item.nameAr,
+                    image: item.image,
+                    unitPrice,
+                    qty: state.modalQty,
+                    customKey,
+                    milkId: item.hasMilk ? milk.id : null,
+                    sugarId: sugar.id,
+                    notes
+                });
+            }
+
+            closeItemModal();
+            updateCartUI();
+            showToast(state.lang === 'ar' ? `تمت إضافة "${item.nameAr}" إلى الطلب` : `Added "${item.nameEn || item.nameAr}"`);
+        }
+        window.addCurrentItemToCart = addCurrentItemToCart;
+
+        function getCartSummary(c) {
+            const lang = state.lang;
+            const parts = [];
+            if (c.milkId && c.milkId !== 'regular') {
+                const m = MILK_OPTIONS.find(x => x.id === c.milkId);
+                if (m) parts.push(lang === 'ar' ? m.ar : m.en);
+            }
+            if (c.sugarId && c.sugarId !== 'regular') {
+                const s = SUGAR_OPTIONS.find(x => x.id === c.sugarId);
+                if (s) parts.push(lang === 'ar' ? s.ar : s.en);
+            }
+            if (c.notes) {
+                parts.push(`${UI_STRINGS[lang].notePrefix}: ${c.notes}`);
+            }
+            return parts.join(' • ');
+        }
+
+        function updateCartUI() {
+            const t = UI_STRINGS[state.lang];
+            const totalQty = state.cart.reduce((s, i) => s + i.qty, 0);
+            const totalAmount = state.cart.reduce((s, i) => s + (i.unitPrice * i.qty), 0);
+
+            const badge = document.getElementById('headerCartBadge');
+            badge.textContent = totalQty;
+            badge.classList.toggle('hidden', totalQty === 0);
+
+            const floatingBar = document.getElementById('floatingCartBar');
+            if (totalQty > 0) {
+                document.getElementById('floatingCount').textContent = totalQty;
+                document.getElementById('floatingTotal').textContent = formatSyp(totalAmount);
+                floatingBar.classList.remove('translate-y-28', 'opacity-0', 'pointer-events-none');
+            } else {
+                floatingBar.classList.add('translate-y-28', 'opacity-0', 'pointer-events-none');
+            }
+
+            const listEl = document.getElementById('cartItemsContainer');
+            const emptyEl = document.getElementById('emptyCartState');
+            const footerEl = document.getElementById('cartFooter');
+
+            if (state.cart.length === 0) {
+                listEl.classList.add('hidden');
+                footerEl.classList.add('hidden');
+                emptyEl.classList.remove('hidden');
+            } else {
+                emptyEl.classList.add('hidden');
+                listEl.classList.remove('hidden');
+                footerEl.classList.remove('hidden');
+
+                listEl.innerHTML = state.cart.map(c => {
+                    const summary = getCartSummary(c);
+                    const displayTitle = state.lang === 'en' && c.nameEn ? c.nameEn : c.nameAr;
+                    const fallbackImg = makeDrinkArtwork(c.nameAr || 'شلتنا', '#d98a54', '#241c15');
+
+                    return `
+                        <div class="bg-bg p-3 rounded-xl border border-line flex items-center justify-between gap-3">
+                            <div class="flex items-center gap-3 min-w-0 text-start">
+                                <img src="${c.image}" alt="${displayTitle}" onerror="this.src='${fallbackImg}'" class="w-14 h-14 rounded-lg object-cover bg-elevated shrink-0 border border-line" />
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-ink text-xs sm:text-sm truncate">${displayTitle}</h4>
+                                    <p class="text-[11px] ${summary ? 'text-copper font-medium' : 'text-subtle'} mt-0.5 line-clamp-2">${summary || t.standardPrep}</p>
+                                    <p class="text-xs font-extrabold text-ink mt-1">${formatSyp(c.unitPrice * c.qty)}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-1.5 bg-card p-1 rounded-lg border border-line shrink-0">
+                                <button type="button" onclick="updateCartQty(${c.cartId}, -1)" class="w-7 h-7 rounded-md bg-bg text-ink font-bold text-sm hover:bg-elevated transition flex items-center justify-center">-</button>
+                                <span class="w-6 text-center text-xs font-extrabold text-ink">${c.qty}</span>
+                                <button type="button" onclick="updateCartQty(${c.cartId}, 1)" class="w-7 h-7 rounded-md bg-bg text-ink font-bold text-sm hover:bg-elevated transition flex items-center justify-center">+</button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                document.getElementById('cartGrandTotal').textContent = formatSyp(totalAmount);
+            }
+        }
+
+        function updateCartQty(cartId, delta) {
+            const idx = state.cart.findIndex(c => c.cartId === cartId);
+            if (idx === -1) return;
+            state.cart[idx].qty += delta;
+            if (state.cart[idx].qty <= 0) state.cart.splice(idx, 1);
+            updateCartUI();
+        }
+        window.updateCartQty = updateCartQty;
+
+        function clearCart() {
+            state.cart = [];
+            updateCartUI();
+            showToast(state.lang === 'ar' ? 'تم إفراغ السلة' : 'Order cleared');
+        }
+        window.clearCart = clearCart;
+
+        function openCart() {
+            updateCartUI();
+            document.getElementById('cartDrawer').classList.remove('hidden');
+        }
+        window.openCart = openCart;
+
+        function closeCart() {
+            document.getElementById('cartDrawer').classList.add('hidden');
+        }
+        window.closeCart = closeCart;
+
+        function sendOrderViaWhatsApp() {
+            if (state.cart.length === 0) return;
+
+            const locationInfo = document.getElementById('customerTableOrAddress').value.trim();
+            const totalAmount = state.cart.reduce((sum, item) => sum + (item.unitPrice * item.qty), 0);
+
+            const lines = [
+                '*طلب جديد - شلتنا*',
+                '━━━━━━━━━━━━━━━━━━━━'
+            ];
+
+            if (locationInfo) {
+                lines.push(`*الطاولة / العنوان:* ${locationInfo}`);
+                lines.push('━━━━━━━━━━━━━━━━━━━━');
+            }
+
+            state.cart.forEach((item, idx) => {
+                const summary = getCartSummary(item);
+                lines.push(`${idx + 1}. *${item.qty}× ${item.nameAr}* — ${formatSyp(item.unitPrice * item.qty)}`);
+                if (summary) {
+                    lines.push(`   ↳ _(${summary})_`);
+                }
+            });
+
+            lines.push('━━━━━━━━━━━━━━━━━━━━');
+            lines.push(`*الإجمالي الكلي:* ${formatSyp(totalAmount)}`);
+
+            const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+        window.sendOrderViaWhatsApp = sendOrderViaWhatsApp;
+
+        let toastTimer;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.remove('opacity-0', '-translate-y-3');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('opacity-0', '-translate-y-3');
+            }, 2400);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTheme();
+            applyLanguage();
+            updateCartUI();
+            initFirebaseRealtimeMenu();
+        });
+    </script>
+</body>
+</html>
